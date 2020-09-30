@@ -1,31 +1,37 @@
 #!/usr/bin/python3
-""" Defines Square class """
+"""Write a class Square that defines a square"""
 
 
-class square():
-    """ defines Square class """
-    width = 0
-    height = 0
+class Square:
+    """optional initialization with size=0 which a positive int"""
 
-    def __init__(self, *args, **kwargs):
-        """ Square class constructor """
-        for key, value in kwargs.items():
-            setattr(self, key, value)
+    def __init__(self, size=0):
+        """initilializes with size 0"""
+        self.__size = size
 
-    def area_of_my_square(self):
-        """ Area of the square """
-        return self.width * self.width
+    @property
+    def size(self):
+        """method to retrieve size"""
+        return (self.__size)
 
-    def perimeter_of_my_square(self):
-        """ calculates de perimeter of the squre """
-        return (self.width * 2) + (self.height * 2)
+    @size.setter
+    def size(self, value):
+        """method to set size"""
+        if type(value) is not int:
+            raise TypeError("size must be an integer")
+        elif value < 0:
+            raise ValueError("size must be >= 0")
+        else:
+            self.__size = value
 
-    def __str__(self):
-        """ returns string representation of a class """
-        return "{}/{}".format(self.width, self.height)
+    def area(self):
+        """method that returns area of the square"""
+        return (self.__size * self.__size)
 
-if __name__ == "__main__":
-    s = square(width=12, height=9)
-    print(s)
-    print(s.area_of_my_square())
-    print(s.perimeter_of_my_square())
+    def my_print(self):
+        """method that prints a square"""
+        if self.__size == 0:
+            print("")
+        else:
+            for i in range(self.__size):
+                print(self.__size * "#")

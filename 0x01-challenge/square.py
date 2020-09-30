@@ -1,37 +1,62 @@
 #!/usr/bin/python3
-"""Write a class Square that defines a square"""
+""" Class Square """
 
 
-class Square:
-    """optional initialization with size=0 which a positive int"""
+class Square():
+    """ Class Square "
+    width = 0
+    height = 0
 
-    def __init__(self, size=0):
-        """initilializes with size 0"""
-        self.__size = size
+    def __init__(self, width, height):
+        """ defining Square class """
+        self.width = width
+        self.height = height
 
     @property
-    def size(self):
-        """method to retrieve size"""
-        return (self.__size)
+    def width(self):
+        """ Private instance attribute width """
+        return self.__width
 
-    @size.setter
-    def size(self, value):
-        """method to set size"""
+    @width.setter
+    def width(self, value):
+        """ width setter """
         if type(value) is not int:
-            raise TypeError("size must be an integer")
-        elif value < 0:
-            raise ValueError("size must be >= 0")
+            raise TypeError("width must be an integer")
+        elif value <= 0:
+            raise ValueError("width must be > 0")
         else:
-            self.__size = value
+            self.width = value
 
-    def area(self):
-        """method that returns area of the square"""
-        return (self.__size * self.__size)
+    @property
+    def height(self):
+        """ Private instance attribute height """
+        return self.__height
 
-    def my_print(self):
-        """method that prints a square"""
-        if self.__size == 0:
-            print("")
+    @height.setter
+    def height(self, value):
+        """ height setter """
+        if type(value) is not int:
+            raise TypeError("height must be an integer")
+        elif value <= 0:
+            raise ValueError("height must be > 0")
         else:
-            for i in range(self.__size):
-                print(self.__size * "#")
+            self.height = value
+
+    def area_of_my_square(self):
+        """ Area of the square """
+        return self.width * self.width
+
+    def permiter_of_my_square(self):
+        """ returns perimeter of the square """
+        return ((self.width * 2) + (self.height * 2))
+
+    def __str__(self):
+        """ returns a string representation """
+        return "{}/{}".format(self.width, self.height)
+
+
+if __name__ == "__main__":
+    s = square(width=12, height=9)
+    print(s)
+    print(s.area_of_my_square())
+    print(s.permiter_of_my_square())
